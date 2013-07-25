@@ -339,3 +339,21 @@ tabGroup.open();
 ```
 
 ## 補足資料
+
+### App Id
+
+AppIdとは、自分が作成するアプリケーションがAppStore上で唯一のものと判別出来るように利用されるIDのことです。唯一のIDとして名前を考えるときにはドメイン名を反転させたもの＋アプリケーション名が推奨されてます。
+
+仮にアプリケーション名を webbrowse とした場合には、 jp.example.webbrowse のような形になります
+
+### TitaniumStudioのフォント設定
+
+フォントが小さく読みづらい場合Titanium Studio の設定を変更します。
+
+1. TitaniumStudio → Preferencesを選択
+2. Generalメニューをクリック
+3. Appearanceをクリック
+4. Colors and Fontsをクリック
+5. TextFontのメニュークリック
+
+![フォント設定画面](image/1stStep-012.png)
