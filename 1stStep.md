@@ -181,7 +181,6 @@ win1.add(label1);                       // (5)
 先ほどのapp.jsのソースコードの一部を改造して、指定したURLのサイトを表示できるようにします
 
 ```javascript
-// 以下は既存のapp.jsがそのまま活用できます
 Titanium.UI.setBackgroundColor('#000');
 var tabGroup = Titanium.UI.createTabGroup();
 var win1 = Titanium.UI.createWindow({  
@@ -213,14 +212,16 @@ tabGroup.open();
 WebKitブラウザ機能とほぼ同等の機能を持った部品です(WebKitとは：WebブラウザのSafariにも標準搭載されるオープンソースソフトウェアでHTML、CSS、JavaScript等を解釈して画面描画を担当してます）
 HTML5/CSS3ベースのHTMLコンテンツをほぼそのまま動作させることが可能で、指定したURLのHTMLコンテンツ表示やあらかじめ自分が作成したHTMLコンテンツの表示などを行うことができます
 
-![webviewの説明イメージ](image/1stStep-010.png)
+![buildした結果の画面イメージ](image/1stStep-010.png)
+
+なお、WebViewの良い点としては、HTMLコンテンツが表示できるのでCSSと組み合わせることで細かいレイアウトを実現できる所がありますが、WebViewだけを使ったiPhoneアプリはアプリの審査基準ガイドラインの12.3：Apps that are simply web clippings, content aggregators, or a collection of links, may be rejectedに該当する可能性あるかもしれず、結果として審査に通らない可能性が高いかもしれないので、その点は念頭に置かれたほうがよいかと思います。
 
 ### HTMLコンテンツ準備して表示
 
 先程は、指定したURLを表示する機能を試しましたが今度はあらかじめ準備しておいたHTMLコンテンツを表示する機能を実装します
 
 ```javascript
-// 以下は既存のapp.jsがそのまま活用できます
+
 Titanium.UI.setBackgroundColor('#000');
 var tabGroup = Titanium.UI.createTabGroup();
 var win1 = Titanium.UI.createWindow({  
@@ -252,6 +253,7 @@ tabGroup.addTab(tab1);
 tabGroup.open();
 ```
 上記をbuildすると以下の様になるかと思います
+
 ![buildした結果の画面イメージ](image/1stStep-011.png)
 
 ### 仕上げにWebサイトを表示出来る簡易Webブラウザを作成します
