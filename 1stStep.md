@@ -111,29 +111,24 @@ Project Template画面が標示されたら、Default Projectを選択します
 
 今回はローカルでの作業のため App Idを仮にこのようにしましたがAppStoreで配布する場合、他のアプリケーションと重複することは出来ません。
 
-しばらくして設定が完了すると、以下のような画面が標示されます
+しばらくして設定が完了すると、以下のような画面が表示されればOKです
 
 ![プロジェクト設定スタート画面](image/1stStep-project-configuration004.png)
-
-
-#### プロジェクト設定後
-
-Titanium Studio が自動的にいくつかのフォルダ＆ファイルを自動生成して最終的に以下のような画面が表示されます
-
-![プロジェクト設定完了画面イメージ](image/1stStep-005.png)
-
-app.js以外のファイルは基本的には編集することはありません。
 
 Titanium Studio 起動時にはウィンドウが複数表示されて画面が狭く感じる場合、レイアウト変更可能です
 
 もしもフォントが小さく感じる場合には、補足資料の項目を参照して下さい
 
-#### 実際にbuildして動作確認しましょう
 
-Titanium Studio の画面のApp Explorer のウィンドウを選択して
+#### プロジェクト設定後に、iPhoneアプリケーションをbuildして動作確認する
 
-1. 赤色のボタンをクリックします
-2. iPhone Simulatorを選択します
+プロジェクト設定が完了するといくつかのフォルダ＆ファイルが自動生成されます
+
+この段階でiPhoneアプリケーションをbuildして動作確認してみましょう。
+
+Titanium Studioで、Run → Runと進みます。
+
+![build方法](image/1stStep-project-configuration005.png)
 
 しばらくすると以下のようにiPhone Simulatorが立ち上がります
 
