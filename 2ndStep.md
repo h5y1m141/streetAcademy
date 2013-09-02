@@ -36,101 +36,95 @@ Project Template画面が標示されたら、Default Projectを選択します
 
 しばらくすると設定が完了します
 
-## WebAPIとは？
+## 講座概要
 
-## Qiitaとは？
+- 端末の通信機能を使ってQiitaの情報を取得する
+	- Titanium Mobileの通信機能についての解説
+		- Titanium Mobileの 通信機能のhttpClientについて
+	- Qiitaの投稿情報を取得するWebAPIの解説
+		- QiitaのWebAPIの構造について
+		- 実装する前にWebブラウザを使ってQiitaのWebAPIにアクセスする		
+	- Qiitaの投稿情報を取得する処理を実装する
+		- Titanium Mobileの 通信機能を使って実装する
+		
+## 端末の通信機能を使ってQiitaの情報を取得する
 
-## Qiitaの投稿情報を取得するアプリケーションを開発する
+QiitaのようなWebAPIと連携するアプリを開発する場合に、Titanium Mobile通信機能を使うことで比較的簡単に実現することができます。
+この章では
 
-Qiitaの開発者向けのAPIを通じて投稿情報を取得する機能を実装します
+- Titanium Mobileの通信機能についての解説
+- Qiitaの投稿情報を取得するWebAPIの解説
+- Qiitaの投稿情報を取得する処理を実装する
+
+という３つのステップに分けて順番に解説していきます
+
+### Titanium Mobileの通信機能についての解説
+
+標準機能のhttpCLientを活用することで簡単に実現できますが、まずはhttpCLientの使い方について解説をします。
+
+QiitaのようなWebAPIを提供するWebサービスは多数あるかと思います。そういったWebAPIにアクセスしてXML形式のファイルやJSON形式のテキストファイルを取得する際にTitanium Mobileの標準機能のhttpCLientを活用します。
+
+なお、インターネット上のHTMLコンテンツを取得すること自体はもちろん可能です。ただし、「すべてのimgタグの要素を抜き出す」というようなHTMLの構造を解析した上で、何か処理をしたい場合には、そもそもTitanium MobileのhttpCLientにはそのような機能がありません。
+
+もしもそのような処理をしたい場合には
+
+- US Yahooが提供してる YQLというサービスを使える仕組みがTitanium Mobile 標準にあるのでそれを活用する
+- Titanium MobileのhttpCLientでHTMLファイルを取得した後、外部のライブラリなどを活用してHTMLの構文解析をする
+
+という方法で実現出来ます。今回はHTMLファイルを取得する処理は取り上げませんが興味ある方は最後の参考資料の情報を参考にしてみてください
+
+### Qiitaの投稿情報を取得するWebAPIの解説
 
 Titanium Mobileで実装をはじめる前に、Qiitaの投稿情報を取得する時のWebAPIについて簡単に説明します
 
-### QiitaのWebAPIについて
+#### QiitaのWebAPIの構造について
 
-ブラウザで以下URLにアクセスすることでパブリックな新着投稿を取得することができます。
+QiitaのWebAPIは
+
+https://qiita.com/api/v1/[利用したいサービス別のディレクトリ]
+
+という形になってます。
+
+[Qiitaの開発者向けのドキュメント](http://qiita.com/docs)に利用したいサービス別のディレクトリ情報などがまとまってますが、ドキュメントの読み方について簡単に説明します
+
+特定ユーザの情報取得の項では
+
+GET /api/v1/users/:url_name
+
+と記載されています
+
+例えば、私のQiita上のユーザ情報（アカウント名はh5y1m141@github)を取得したい場合には **:url_name** の所を該当ユーザに置き換えることで情報が取得出来ます。
+
+具体的には、以下URLにアクセスすることで私のQiita上のユーザ情報を取得することができます
+
+[https://qiita.com/api/v1/users/h5y1m141@github](https://qiita.com/api/v1/users/h5y1m141@github)
+
+```javascript
+{"id":10187,"url_name":"h5y1m141@github","profile_image_url":"https://secure.gravatar.com/avatar/4fdf95707fe9a33f3a1ba8c97315468c?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png","url":"http://qiita.com/h5y1m141@github","description":"iPhone用のQiita Viewerアプリ作ってます\r\nhttps://github.com/h5y1m141/TiQiita","website_url":"http://h5y1m141.hatenablog.com/","organization":"","location":"","facebook":"","linkedin":"","twitter":null,"github":"h5y1m141","followers":7,"following_users":9,"items":1,"teams":[],"image_upload":{"limit":2097152,"used":0}}
+```
+
+#### 実装する前にWebブラウザを使ってQiitaのWebAPIにアクセスする		
+
+実装する前にWebブラウザを使ってQiitaのWebAPIにアクセスして、どのような結果が取得できるのかを確認してみましょう。
+
+Webブラウザを起動して以下URLにアクセスします
 
 [https://qiita.com/api/v1/items](https://qiita.com/api/v1/items)
 
-※Google Chromeでアクセスした時の例
+以下はMac版のGoogle Chromeでアクセスした時の画面イメージになります。
+
 ![ブラウザでアクセスした時のキャプチャ](image/qiitaviewer-webapi-001.jpg)
 
-投稿情報は以下の様なJSON形式になりますが、詳しい情報を知りたい方は、[Qiitaのサイトをご覧ください](http://qiita.com/docs#13)
+QiitaのWebAPIの構造についておおまかに理解出来たかと思いますので、実際にQiitaの投稿情報を取得する処理を実装していきます。
 
-```javascript
-[{"id": 1,
- "uuid": "1a43e55e7209c8f3c565",
- "user":
-  {"name": "Hiroshige Umino",
-   "url_name": "yaotti",
-   "profile_image_url": "https://si0.twimg.com/profile_images/2309761038/1ijg13pfs0dg84sk2y0h_normal" },
- "title": "てすと",
- "body": "<p>foooooooooooooooo</p>\n",
- "created_at": "2012-10-03 22:12:36 +0900",
- "updated_at": "2012-10-03 22:12:36 +0900",
- "created_at_in_words": "18 hours ago",
- "updated_at_in_words": "18 hours ago",
- "tags":
-  [{"name": "FOOBAR",
-    "url_name": "FOOBAR",
-    "icon_url": "http://qiita.com/icons/thumb/missing.png",
-    "versions": ['1.2', '1.3']}],
- "stock_count": 0,
- "stock_users": [],
- "comment_count": 0,
- "url": "http://qiita.com/items/1a43e55e7209c8f3c565",
- "gist_url": null,
- "tweet": false,
- "private": false,
- "stocked": false
-},
- ...
-]
-```
+### Qiitaの投稿情報を取得する処理を実装する
 
-### Qiitaの投稿情報を取得する機能を実装する
+Qiitaの投稿情報を取得するためにTitanium Mobileの 通信機能を使って実装します
 
-QiitaのようなWebAPIと連携するアプリを開発する場合に、Titanium Mobile標準機能のhttpCLientを活用することで簡単に実現できます。
-まずはhttpCLientの使い方について解説をします。
+#### Titanium Mobileの 通信機能を使って実装する
 
-
-1. プロジェクト作成時に自動的に生成されたapp.jsの中身を全て削除します。
-
+1. プロジェクト作成時に自動的に生成された **app.jsの中身のソースコードを全て削除**します。
 2. その後に以下を記述します
-
-```javascript
-var xhr,qiitaURL,method;
-qiitaURL = "https://qiita.com/api/v1/items";
-method = "GET";
-xhr = Ti.Network.createHTTPClient();
-xhr.open(method,qiitaURL);
-xhr.onload = function(){
-  var body;
-  if (this.status === 200) {
-    body = JSON.parse(this.responseText);
-	Ti.API.info(body);
-  } else {
-    Ti.API.info("error:status code is " + this.status);
-  }
-}
-xhr.onerror = function(e) {
-  var error;
-  error = JSON.parse(this.responseText);
-  Ti.API.info(error.error);
-}
-xhr.timeout = 5000;
-xhr.send();
-```
-
-動作確認するために、buildした結果は以下のとおりです
-
-![buildした結果の画面イメージ](image/qiitaviewer-httpClient-iphone-001.jpg)
-
-シミュレーターの画面には何も標示されずコンソール上に複数の文字が標示されるかと思いますので、その点が確認できたらOKなので、次で画面に表示する方法について解説します
-
-### Qiitaの投稿情報を取得する機能の解説
-
-ご存じの方が多いかもしれませんが、念のためTitanium MobileのhttpClientについて解説します
 
 ```javascript
 var xhr,qiitaURL,method;
@@ -169,5 +163,22 @@ xhr.send();
 イメージとしては以下のような対応関係になります
 
 ![httpClientのonloadとonerrorの対応関係](image/qiitaviewer-httpClient-overview-001.jpg)
+
+動作確認するために、buildした結果は以下のとおりです
+
+iPhone起動時の画面キャプチャ
+
+![選択メニュー](image/qiitaviewer-httpClient-iphone-001.jpg)
+
+Android起動時の画面キャプチャ
+
+![選択メニュー](image/qiitaviewer-httpClient-android-001.jpg)
+
+
+シミュレーターの画面には何も標示されずコンソール上に複数の文字が標示されるかと思います。
+
+この段階ではTitanium Mobileの通信機能を使ってデータ取得することを目的に実装しているため、スマートフォンの画面表示するところまでは実装していません。
+		
+
 
 
