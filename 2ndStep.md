@@ -46,7 +46,7 @@ Project Template画面が標示されたら、Default Projectを選択します
 		- 実装する前にWebブラウザを使ってQiitaのWebAPIにアクセスする		
 	- Qiitaの投稿情報を取得する処理を実装する
 		- Titanium Mobileの 通信機能を使って実装する
-		
+- 参考資料		
 ## 端末の通信機能を使ってQiitaの情報を取得する
 
 QiitaのようなWebAPIと連携するアプリを開発する場合に、Titanium Mobile通信機能を使うことで比較的簡単に実現することができます。
@@ -179,6 +179,11 @@ Android起動時の画面キャプチャ
 
 この段階ではTitanium Mobileの通信機能を使ってデータ取得することを目的に実装しているため、スマートフォンの画面表示するところまでは実装していません。
 		
+## 参考資料
+ 
+### YQL
 
+インターネット上にあるコンテンツをSQLに似た独自言語で取得することが出来るUS Yahooが提供してるWebサービス。
 
-
+「YQLをTitaniumで使うと色々捗る」というブログ記事でTitanium MobileでのYQL使ったサンプルが紹介されてます
+[http://d.hatena.ne.jp/zebevogue/20120421/1334990568](http://d.hatena.ne.jp/zebevogue/20120421/1334990568)
