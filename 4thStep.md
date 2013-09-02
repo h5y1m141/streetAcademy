@@ -11,7 +11,7 @@
 
 [「JavaScriptでスマフォアプリ開発を学ぼう」入門編](1stStep.md)を受講済の方を前提としています
 
-## プロジェクト設定
+## 今回のワークショップのためのプロジェクトを設定する
 
 TitaniumStudioを起動した後、File→New→Titanium Mobile Projectと進みます
 
