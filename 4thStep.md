@@ -93,9 +93,8 @@ mapWindow.add(mapView);
 mapWindow.open();
 ```
 
-1. 表示する地図の形式を設定します。なおサンプルで設定してる **Titanium.Map.STANDARD_TYPE** 以外に、**Titanium.Map.SATELLITE_TYPE**（衛星画像）と**Titanium.Map.HYBRID_TYPE**(標準地図と衛星地図の両方を表示する)が設定できます
-2. どの地域を地図上で表示するかを決定するのがregionプロパティになります。具体的には緯度（**latitude**）経度（**longitude**）と縮尺に関する情報（**latitudeDelta** ,**longitudeDelta**）を設定します
-
+1. 表示する地図の形式を設定します。なおサンプルで設定してる **Titanium.Map.STANDARD_TYPE** 以外に衛星画像を表示する、**Titanium.Map.SATELLITE_TYPE**　と標準地図と衛星地図の両方を表示する **Titanium.Map.HYBRID_TYPE** が設定できます
+2. どの地域を地図上で表示するかを決定するのがregionプロパティになります。具体的には緯度を意味する**latitude**と、経度を意味する**longitude** と縮尺に関する情報の**latitudeDelta** と **longitudeDelta** を設定します
 
 latitudeDelta,longitudeDeltaそれぞれについて補足をすると以下のようになります
 
