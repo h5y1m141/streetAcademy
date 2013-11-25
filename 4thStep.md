@@ -1,4 +1,4 @@
-# ワークショップ「JavaScriptでスマフォアプリ開発を学ぼう」基礎編:TCSと連携させた位置情報処理
+# ワークショップ「JavaScriptでスマフォアプリ開発を学ぼう」基礎編:ACSと連携させた位置情報処理
 
 ![Titanium Mobileとは？の画像](image/1stStep-001.png)
 
@@ -23,8 +23,8 @@ Project Template画面が標示されたら、Default Projectを選択します
 
 プロジェクト設定画面が表示されますので今回は以下入力してプロジェクトの設定を行います
 
-- Project name: **mapWithTCS**
-- App Id: **com.streetacademy.mapWithTCS**
+- Project name: **mapWithACS**
+- App Id: **com.streetacademy.mapWithACS**
 
 ![プロジェクト設定スタート画面](image/1stStep-project-configuration003.png)
 
@@ -39,12 +39,12 @@ Project Template画面が標示されたら、Default Projectを選択します
 	- 地図情報を活用したサンプルアプリ開発
 		- 地図情報のみを表示する
 		- 地図上にマーカーを表示する
-- TCSと連携させる
-	- TCSとは？
-	- TCSと連携したアプリケーション開発
+- ACSと連携させる
+	- ACSとは？
+	- ACSと連携したアプリケーション開発
 		- 開発前に行う必須作業
-		- TCSの管理画面からデータ登録する		
-		- TCSに登録したデータを検索して地図上にマーカーを表示する
+		- ACSの管理画面からデータ登録する		
+		- ACSに登録したデータを検索して地図上にマーカーを表示する
 - 参考資料		
 	- 緯度経度と単位について
 	- 測地系について
@@ -160,13 +160,13 @@ mapWindow.open();
 5. マーカーをタッチ時のポップアップの左側に独自のアイコン画像を設定することが出来ます。今回のサンプルでは画像無しに設定してます
 6. マーカーをタッチ時のポップアップの右側に独自のアイコン画像を設定することが出来ます。今回のサンプルでは画像無しに設定してます
 
-## TCSと連携させる
+## ACSと連携させる
 
 先ほど作ったアプリケーションでは、緯度、経度の情報を予め設定したものを画面に表示する機能を実装しました。
 
-これだとあまり実用的なアプリケーションとはいえないため、サーバー上に配置した緯度、経度の情報を読み込んだ上で地図上に表示するアプリケーションに仕上げていきますがサーバーサイドのアプリケーションをゼロベースで開発するとなると敷居が高くなってしまうため、Titanium Mobileの開発元のAppceleratorが提供してるTCSという便利なサービスを活用していきます。
+これだとあまり実用的なアプリケーションとはいえないため、サーバー上に配置した緯度、経度の情報を読み込んだ上で地図上に表示するアプリケーションに仕上げていきますがサーバーサイドのアプリケーションをゼロベースで開発するとなると敷居が高くなってしまうため、Titanium Mobileの開発元のAppceleratorが提供してるACSという便利なサービスを活用していきます。
 
-## TCSとは？
+## ACSとは？
 
 スマートフォン向けのアプリケーションを開発する場合にサーバーサイドのアプリケーションが必要になってきますが、その際に必要となりそうな機能というのは
 
@@ -179,17 +179,17 @@ mapWindow.open();
 
 こういう機能を手軽に利用できるようサービスの概念を **MBaaS** （Mobile Backend as a Serviceの略でエムバースという読み方をします）というのものがあります。
 
-Titanium Mobileの開発元のAppceleratorでは MBaaS の１つとしてTitanium Cloud Services、通称 TCSというものを提供してます。
+Titanium Mobileの開発元のAppceleratorでは MBaaS の１つとしてTitanium Cloud Services、通称 ACSというものを提供してます。
 
-TCSを使うことで、サーバーサイドのアプリケーションを作りこむことなく手軽に位置情報の管理をすることが出来るようになります
+ACSを使うことで、サーバーサイドのアプリケーションを作りこむことなく手軽に位置情報の管理をすることが出来るようになります
 
-## TCSと連携したアプリケーション開発
+## ACSと連携したアプリケーション開発
 
-実際にTCSと連携したアプリケーション開発方法について説明します
+実際にACSと連携したアプリケーション開発方法について説明します
 
 ### 開発前に行う必須作業
 
-TCSと連携したアプリケーションを開発する場合に、アプリケーションに関する情報を管理してるtiapp.xmlの修正をする必要があります。
+ACSと連携したアプリケーションを開発する場合に、アプリケーションに関する情報を管理してるtiapp.xmlの修正をする必要があります。
 
 具体的には以下2つの作業が必要になります
 
@@ -228,9 +228,9 @@ App Explorer 上で、tiapp.xmlをダブルクリックして、tiapp.xmlを開�
 
 なお、住所から緯度と経度の情報を調べる方法を参考資料にまとめていますので、今後独自にデータを登録したい場合には、参考資料の情報を参考にご自身で緯度経度を調べた上で登録してみて下さい
 
-### TCSの管理画面からデータ登録する
+### ACSの管理画面からデータ登録する
 
-TCSの管理画面にアクセスして上記データを登録するため、Webブラウザを起動してTCSの管理画面の以下URLにアクセスします
+ACSの管理画面にアクセスして上記データを登録するため、Webブラウザを起動してACSの管理画面の以下URLにアクセスします
 
 [http://my.appcelerator.com/apps](http://my.appcelerator.com/apps)
 
@@ -238,7 +238,7 @@ TCSの管理画面にアクセスして上記データを登録するため、We
 
 ![ログイン画面](image/4thStep-tcs-001.png)
 
-Titanium Mobileで開発してるアプリケーション名の一覧が表示されるので今回作ってるProjectの **mapWithTCS** を探して、クリックします
+Titanium Mobileで開発してるアプリケーション名の一覧が表示されるので今回作ってるProjectの **mapWithACS** を探して、クリックします
 
 ![アプリケーション一覧](image/4thStep-tcs-002.png)
 
@@ -249,7 +249,7 @@ Titanium Mobileで開発してるアプリケーション名の一覧が表示�
 
 以下のようにアプリケーションの管理画面が表示されます
 
-![ここにTCSの管理画面を表示する](image/4thStep-tcs-004.png)
+![ここにACSの管理画面を表示する](image/4thStep-tcs-004.png)
 
 アプリケーションの管理画面では
 
@@ -291,7 +291,100 @@ Placesの管理画面が表示されたら、**Create a place** をクリック�
 
 この要領で、残りのデータも登録します
 
-### TCSに登録したデータを検索して地図上にマーカーを表示する
+### ACSに登録したデータを検索して地図上にマーカーを表示する
+
+ACSにデータを登録する手順を解説しましたが、そのデータを検索して地図上にマーカーを表示する昨日を実装します
+
+ACS上のデータを検索する処理としては
+
+1. ACSを活用するモジュールを読み込む
+2. 1.で読み込んだモジュールの機能を活用してデータを検索する処理
+
+に大別できます。
+
+Titanium Mobileの標準のAPIで提供される以上のことを実現するために、開発元だけではなくサードパーティーの会社や、個人の開発者などが、ObjectiveC（Android向けの場合にはJava）で書かれたプログラムを読み込むことが出来ます。
+
+このプログラムのことをネイティブモジュールと呼びます（ネット上では単にモジュールという言い方をしてるケースもあります）
+
+ACSと連携するアプリケーションを作る場合には、Titanium Mobileの開発元のAppceleratorが提供してるモジュールを利用します
+
+#### モジュール読み込み方法
+
+モジュールを読み込む場合には
+
+```javascript
+var module = require('モジュール名');
+```
+のように記述します。
+
+Titanium Mobileの開発元のAppceleratorが提供するACS連携モジュールの場合には
+
+```javascript
+var cloud = require('ti.cloud');
+```
+のように記述します。
+
+
+#### ACSからデータを検索してその結果を地図上に表示する
+
+先ほど作ったアプリではあらかじめ設定したデータを元にして、任意の場所にマーカーを表示する機能を実装しましたので、それを改造して、ACSからデータを検索してその結果を地図上に表示するアプリケーションを作ります
+
+```javascript
+var mapWindow,mapView,marker;
+
+mapWindow = Titanium.UI.createWindow({
+  title:'位置情報処理',
+  backgroundColor:'#fff'
+});
+mapView = Titanium.Map.createView({
+  mapType: Titanium.Map.STANDARD_TYPE,
+  region: {
+    latitude:35.676564,
+    longitude:139.765076,
+    latitudeDelta:0.025,
+    longitudeDelta:0.025
+  },
+  animate:true,
+  regionFit:true,
+  userLocation:true,
+  top:0,
+  left:0,
+  width:Ti.UI.FULL,
+  height:Ti.UI.FULL
+});
+
+var cloud = require("ti.cloud");
+cloud.Places.query({
+  page:1,
+  per_page:20
+},function(e){
+  var data, i, place, result,marker;
+  if(e.success){
+    i = 0;
+    while(i < e.places.length){
+      place =  e.places[i];
+      marker = Titanium.Map.createAnnotation({
+        latitude: place.latitude,
+        longitude: place.longitude,
+        title: place.name,
+        animate: false,
+        leftButton: "",
+        rightButton:""
+      });
+      mapView.addAnnotation(marker);
+      i++;
+    }
+
+  } else {
+    Ti.API.info("Error:\n" + ((e.error && e.message) || JSON.stringify(e)));
+  }
+});
+
+mapWindow.add(mapView);
+mapWindow.open();
+```
+
+
 
 ## 参考情報
 
