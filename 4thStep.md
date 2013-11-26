@@ -181,7 +181,7 @@ mapWindow.open();
 
 こういう機能を手軽に利用できるようサービスの概念を **MBaaS** （Mobile Backend as a Serviceの略でエムバースという読み方をします）というのものがあります。
 
-Titanium Mobileの開発元のAppceleratorでは MBaaS の１つとしてTitanium Cloud Services、通称 ACSというものを提供してます。
+Titanium Mobileの開発元のAppceleratorでは MBaaS の１つとしてACSというものを提供してます。
 
 ACSを使うことで、サーバーサイドのアプリケーションを作りこむことなく手軽に位置情報の管理をすることが出来るようになります
 
