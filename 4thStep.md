@@ -355,15 +355,15 @@ mapView = Titanium.Map.createView({
   height:Ti.UI.FULL
 });
 
-var cloud = require("ti.cloud");
-cloud.Places.query({
-  page:1,
+var cloud = require("ti.cloud"); // (1)
+cloud.Places.query({             // (2)
+  page:1,                        // (3)
   per_page:20
-},function(e){
+},function(e){                   // (4)
   var data, i, place, result,marker;
   if(e.success){
     i = 0;
-    while(i < e.places.length){
+    while(i < e.places.length){  // (5)
       place =  e.places[i];
       marker = Titanium.Map.createAnnotation({
         latitude: place.latitude,
@@ -374,7 +374,7 @@ cloud.Places.query({
         rightButton:""
       });
       mapView.addAnnotation(marker);
-      i++;
+      i++;                       // (6)
     }
 
   } else {
@@ -385,7 +385,12 @@ cloud.Places.query({
 mapWindow.add(mapView);
 mapWindow.open();
 ```
-
+1. ACSを活用するために、モジュールを読み込みます。読み込んだ値を変数cloudに格納しており、これ以降cloud.xxx.xxx()という形でACS上にあるデータを検索したり、登録することが可能になります
+2. ACSに登録した時に **places** の項目の情報を検索する時には、Places.query()というメソッドを呼び出すことで実現できます。
+3. ACSのデータを検索するときに、Places.query()メソッドにオプションとなる値を設定することで細かい条件検索ができます。今回は件数が少ないですが例えば登録データが1000件あるような場合、per_pageの値を設定することで1検索あたりのデータ数を設定することができます。（今回のように20と指定すると1回あたり20件までしか取得できません）またページと言う概念があるため、最初に20件取得したあと21件目のデータを取得したい場合には、pageという項目に適切な値を設定することで次のデータを取得できます
+4. Places.query()メソッドで検索された結果は、コールバック関数に値が引き渡されます。ここの変数eの値を参照することで、検索の成功・失敗や実際のデータが参照できます
+5. Places.query()メソッドで検索された結果を順番に得るために、配列のe.placesの長さ分ループ処理をします
+6. ループのカウンターとして利用してる変数iの値に1つ増加させます
 
 
 ## 参考情報
