@@ -11,6 +11,6 @@ Titanium Mobileというアプリケーションを使うことで、Webデザ�
 
 ## 講座一覧
 
-- [1回目：WindowsでTitanium Mobileを利用するための環境構築と簡単なアプリ開発](1stStep.md)
-- [2回目：スマフォアプリでよく見かける複数データの一覧表示機能を使ったアプリ開発方法](2ndStep.md)
-- [3回目：スマフォアプリならではの位置情報機能を活用したアプリ開発](3rdStep.md)
+- [1回目：WindowsでTitanium Mobileを利用するための環境構築と簡単なアプリ開発](WindowsPlusTitanium/1stStep.md)
+- [2回目：スマフォアプリでよく見かける複数データの一覧表示機能を使ったアプリ開発方法](WindowsPlusTitanium/2ndStep.md)
+- [3回目：スマフォアプリならではの位置情報機能を活用したアプリ開発](WindowsPlusTitanium/3rdStep.md)
